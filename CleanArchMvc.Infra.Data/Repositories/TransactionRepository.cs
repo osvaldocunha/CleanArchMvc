@@ -22,10 +22,10 @@ namespace CleanArchMvc.Infra.Data.Repositories
             return transaction;
         }
 
-        public async Task<Transaction> GetByIdAsync(int? id)
+        public async Task<Transaction> GetByIdAsync(string sku)
         {
-            return await _transactionContext.Transactions.Include(c => c.Category)
-               .SingleOrDefaultAsync(p => p.Id == id);
+            return await _transactionContext.Transactions.Include(c => c.Sku)
+               .SingleOrDefaultAsync(p => p.Sku == sku);
         }
         
         public async Task<IEnumerable<Transaction>> GetTransactionsAsync()

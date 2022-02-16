@@ -19,7 +19,7 @@ namespace CleanArchMvc.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RatesDTO>>> Get()
         {
-            var categories = await _rateService.GetCategories();
+            var categories = await _rateService.GetRates();
             if (categories == null)
             {
                 return NotFound("Categories not found");
@@ -46,14 +46,13 @@ namespace CleanArchMvc.API.Controllers
 
             await _rateService.Add(rateDto);
 
-            return new CreatedAtRouteResult("Getrate", new { id = rateDto.Id }, 
-                rateDto);
+            return new CreatedAtRouteResult("Getrate", new { id = rateDto.Id },      rateDto);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(int id,[FromBody] RatesDTO rateDto)
+        public async Task<ActionResult> Put(int id, [FromBody] RatesDTO rateDto)
         {
-            if (id != rateDto.Id)
+            if (id.Equals( rateDto.Id))
                 return BadRequest();
 
             if (rateDto == null)

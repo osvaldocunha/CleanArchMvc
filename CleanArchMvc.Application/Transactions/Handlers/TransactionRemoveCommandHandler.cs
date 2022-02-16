@@ -20,7 +20,7 @@ namespace CleanArchMvc.Application.Transactions.Handlers
         public async Task<Transaction> Handle(TransactionRemoveCommand request,
             CancellationToken cancellationToken)
         {
-            var transaction = await _transactionRepository.GetByIdAsync(request.Id);
+            var transaction = await _transactionRepository.GetByIdAsync(request.Sku);
 
             if (transaction == null)
             {

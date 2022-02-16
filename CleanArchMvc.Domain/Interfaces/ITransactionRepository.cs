@@ -10,7 +10,7 @@ namespace CleanArchMvc.Domain.Interfaces
     public interface ITransactionRepository
     {
         Task<IEnumerable<Transaction>> GetTransactionsAsync();
-        Task<Transaction> GetByIdAsync(int? id);
+        Task<Transaction> GetByIdAsync(string sku);
         Task<Transaction> CreateAsync(Transaction transaction);
         Task<Transaction> UpdateAsync(Transaction transaction);
         Task<Transaction> RemoveAsync(Transaction transaction);

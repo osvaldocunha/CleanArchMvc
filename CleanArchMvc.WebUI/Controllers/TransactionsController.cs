@@ -35,8 +35,8 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpGet()]
         public async Task<IActionResult> Create()
         {
-            ViewBag.CategoryId =
-            new SelectList(await _rateService.GetCategories(), "Id", "Name");
+            ViewBag.sku =
+            new SelectList(await _rateService.GetRates(), "From", "To");
 
             return View();
         }
@@ -53,16 +53,16 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpGet()]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string sku)
         {
-            if (id == null) return NotFound();
-            var transactionDto = await _transactionService.GetById(id);
+            if (sku == null) return NotFound();
+            var transactionDto = await _transactionService.GetById(sku);
 
             if (transactionDto == null) return NotFound();
 
-            var categories = await _rateService.GetCategories();
-            ViewBag.CategoryId = new SelectList(categories, "Id", "Name", transactionDto.CategoryId);
-
+            var rates = await _rateService.GetRates();
+            ViewBag.sku = new SelectList(rates, "sku", "USD", transactionDto.Sku);
+           
             return View(transactionDto);
         }
 
@@ -77,9 +77,9 @@ namespace CleanArchMvc.WebUI.Controllers
             return View(transactionDto);
         }
 
-        [Authorize(Roles ="Admin")]
+       // [Authorize(Roles ="Admin")]
         [HttpGet()]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
                 return NotFound();
@@ -92,22 +92,18 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost(), ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             await _transactionService.Remove(id);
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null) return NotFound();
             var transactionDto = await _transactionService.GetById(id);
 
-            if (transactionDto == null) return NotFound();
-            var wwwroot = _environment.WebRootPath;
-            var image = Path.Combine(wwwroot, "images\\" + transactionDto.Image);
-            var exists = System.IO.File.Exists(image);
-            ViewBag.ImageExist = exists;
+  
 
             return View(transactionDto);
         }

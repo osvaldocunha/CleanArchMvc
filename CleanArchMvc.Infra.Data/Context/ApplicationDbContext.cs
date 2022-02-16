@@ -11,7 +11,7 @@ namespace CleanArchMvc.Infra.Data.Context
             : base(options)
         { }
 
-        public DbSet<Rates> Categories { get; set; }
+        public DbSet<Rates> Rates { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

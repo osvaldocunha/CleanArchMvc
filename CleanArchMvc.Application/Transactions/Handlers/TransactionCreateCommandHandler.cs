@@ -18,8 +18,7 @@ namespace CleanArchMvc.Application.Transactions.Handlers
         public async Task<Transaction> Handle(TransactionCreateCommand request, 
             CancellationToken cancellationToken)
         {
-            var transaction = new Transaction(request.Name, request.Description, request.Price,
-                              request.Stock, request.Image);
+            var transaction = new Transaction(request.Sku, request.Amount, request.Currency );
 
             if (transaction == null)
             {
@@ -27,7 +26,7 @@ namespace CleanArchMvc.Application.Transactions.Handlers
             }
             else
             {
-                transaction.CategoryId = request.CategoryId;
+                transaction.Sku = request.Sku; //TODO: ovc
                 return await _transactionRepository.CreateAsync(transaction);
             }
         }

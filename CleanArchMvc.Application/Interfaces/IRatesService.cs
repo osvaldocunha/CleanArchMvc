@@ -6,10 +6,10 @@ namespace CleanArchMvc.Application.Interfaces
 {
     public interface IRatesService
     {
-        Task<IEnumerable<RatesDTO>> GetCategories();
+        Task<IEnumerable<RatesDTO>> GetRates();
         Task<RatesDTO> GetById(int? id);
-        Task Add(RatesDTO categoryDto);
-        Task Update(RatesDTO categoryDto);
+        Task Add(RatesDTO rateDto);
+        Task Update(RatesDTO rateDto);
         Task Remove(int? id);
     }
 }

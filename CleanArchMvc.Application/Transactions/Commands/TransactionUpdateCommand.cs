@@ -2,6 +2,6 @@
 {
     public class TransactionUpdateCommand : TransactionCommand
     {
-        public int Id { get; set; }
+        public string Sku { get; set; }
     }
 }

@@ -28,10 +28,10 @@ namespace CleanArchMvc.API.Controllers
             return Ok(produtos);
         }
 
-        [HttpGet("{id}", Name = "GetTransaction")]
-        public async Task<ActionResult<TransactionDTO>> Get(int id)
+        [HttpGet("{sku}", Name = "GetTransaction")]
+        public async Task<ActionResult<TransactionDTO>> Get(string sku)
         {
-            var produto = await _transactionService.GetById(id);
+            var produto = await _transactionService.GetById(sku);
             if (produto == null)
             {
                 return NotFound("Transaction not found");
@@ -40,46 +40,46 @@ namespace CleanArchMvc.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] TransactionDTO produtoDto)
+        public async Task<ActionResult> Post([FromBody] TransactionDTO transactionDTO)
         {
-            if (produtoDto == null)
+            if (transactionDTO == null)
                 return BadRequest("Data Invalid");
 
-            await _transactionService.Add(produtoDto);
+            await _transactionService.Add(transactionDTO);
 
             return new CreatedAtRouteResult("GetTransaction",
-                new { id = produtoDto.Id }, produtoDto);
+                new {sku = transactionDTO.Sku }, transactionDTO);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] TransactionDTO produtoDto)
+        public async Task<ActionResult> Put(string id, [FromBody] TransactionDTO transactionDTO)
         {
-            if (id != produtoDto.Id)
+            if (id != transactionDTO.Sku)
             {
                 return BadRequest("Data invalid");
             }
 
-            if (produtoDto == null)
+            if (transactionDTO == null)
                 return BadRequest("Data invalid");
 
-            await _transactionService.Update(produtoDto);
+            await _transactionService.Update(transactionDTO);
 
-            return Ok(produtoDto);
+            return Ok(transactionDTO);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<TransactionDTO>> Delete(int id)
+        [HttpDelete("{sku}")]
+        public async Task<ActionResult<TransactionDTO>> Delete(string  sku)
         {
-            var produtoDto = await _transactionService.GetById(id);
+            var transactionDTO = await _transactionService.GetById(sku);
 
-            if (produtoDto == null)
+            if (transactionDTO == null)
             {
                 return NotFound("Transaction not found");
             }
 
-            await _transactionService.Remove(id);
+            await _transactionService.Remove(sku);
 
-            return Ok(produtoDto);
+            return Ok(transactionDTO);
         }
     }
 }

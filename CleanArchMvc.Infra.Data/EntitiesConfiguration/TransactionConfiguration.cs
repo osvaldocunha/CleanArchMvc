@@ -8,14 +8,17 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.HasKey(t => t.Id);
-            builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
-            builder.Property(p => p.Description).HasMaxLength(200).IsRequired();
+            builder.HasKey(t => t.Sku);
+            builder.Property(p => p.Amount).HasMaxLength(30).IsRequired();
+            builder.Property(p => p.Currency).HasMaxLength(3).IsRequired();
 
-            builder.Property(p => p.Price).HasPrecision(10, 2);
-
-            builder.HasOne(e => e.Category).WithMany(e => e.Transaction)
-                .HasForeignKey(e => e.CategoryId);
+            builder.HasData(
+            new Transaction("T2006", 10.00, "USD"),
+            new Transaction("M2007", 34.57, "CAD"),
+            new Transaction("R2008", 17.95, "USD"),
+            new Transaction("T2006", 7.63, "EUR"),
+            new Transaction("B2009", 21.23, "USD")
+          );
         }
     }
 }

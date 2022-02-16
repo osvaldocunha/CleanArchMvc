@@ -7,9 +7,9 @@ namespace CleanArchMvc.Application.Interfaces
     public interface ITransactionsService
     {
         Task<IEnumerable<TransactionDTO>> GetTransactions();
-        Task<TransactionDTO> GetById(int? id);
+        Task<TransactionDTO> GetById(string sku);
         Task Add(TransactionDTO TransactionsDto);
         Task Update(TransactionDTO TransactionsDto);
-        Task Remove(int? id);
+        Task Remove(string sku);
     }
 }

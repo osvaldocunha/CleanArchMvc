@@ -5,10 +5,10 @@ namespace CleanArchMvc.Application.Transactions.Queries
 {
     public class GetTransactionByIdQuery : IRequest<CleanArchMvc.Domain.Entities.Transaction>
     {
-        public int Id { get; set; }
-        public GetTransactionByIdQuery(int id)
+        public string  Sku { get; set; }
+        public GetTransactionByIdQuery(string sku)
         {
-            Id = id;
+            Sku = sku;
         }
     }
 }

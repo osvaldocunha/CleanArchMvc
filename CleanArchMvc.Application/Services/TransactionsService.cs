@@ -32,9 +32,9 @@ namespace CleanArchMvc.Application.Services
             return _mapper.Map<IEnumerable<TransactionDTO>>(result);
         }
 
-        public async Task<TransactionDTO> GetById(int? id)
+        public async Task<TransactionDTO> GetById(string sku)
         {
-            var transactionByIdQuery = new GetTransactionByIdQuery(id.Value);
+            var transactionByIdQuery = new GetTransactionByIdQuery(sku);
 
             if (transactionByIdQuery == null)
                 throw new Exception($"Entity could not be loaded.");
@@ -58,9 +58,9 @@ namespace CleanArchMvc.Application.Services
             await _mediator.Send(transactionUpdateCommand);
         }
 
-        public async Task Remove(int? id)
+        public async Task Remove(string id)
         {
-            var transactionRemoveCommand = new TransactionRemoveCommand(id.Value);
+            var transactionRemoveCommand = new TransactionRemoveCommand(id);
             if (transactionRemoveCommand == null)
                 throw new Exception($"Entity could not be loaded.");
 

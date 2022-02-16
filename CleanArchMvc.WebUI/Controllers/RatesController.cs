@@ -10,17 +10,17 @@ namespace CleanArchMvc.WebUI.Controllers
     [Authorize]
     public class RatesController : Controller
     {
-        private readonly IRatesService _categoryService;
-        public RatesController(IRatesService categoryService)
+        private readonly IRatesService _rateService;
+        public RatesController(IRatesService rateService)
         {
-            _categoryService = categoryService;
+            _rateService = rateService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetCategories();
-            return View(categories);
+            var rates = await _rateService.GetRates();
+            return View(rates);
         }
 
         [HttpGet()]
@@ -34,7 +34,7 @@ namespace CleanArchMvc.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _categoryService.Add(category);
+                await _rateService.Add(category);
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -44,7 +44,7 @@ namespace CleanArchMvc.WebUI.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
-            var categoryDto = await _categoryService.GetById(id);
+            var categoryDto = await _rateService.GetById(id);
             if (categoryDto == null) return NotFound();
             return View(categoryDto);
         }
@@ -56,7 +56,7 @@ namespace CleanArchMvc.WebUI.Controllers
             {
                 try
                 {
-                    await _categoryService.Update(categoryDto);
+                    await _rateService.Update(categoryDto);
                 }
                 catch (Exception)
                 {
@@ -73,7 +73,7 @@ namespace CleanArchMvc.WebUI.Controllers
             if (id == null)
                 return NotFound();
 
-            var categoryDto = await _categoryService.GetById(id);
+            var categoryDto = await _rateService.GetById(id);
 
             if (categoryDto == null) return NotFound();
 
@@ -83,7 +83,7 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpPost(), ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _categoryService.Remove(id);
+            await _rateService.Remove(id);
             return RedirectToAction("Index");
         }
 
@@ -92,12 +92,12 @@ namespace CleanArchMvc.WebUI.Controllers
             if (id == null)
                 return NotFound();
 
-            var categoryDto = await _categoryService.GetById(id);
+            var rateDto = await _rateService.GetById(id);
 
-            if (categoryDto == null)
+            if (rateDto == null)
                 return NotFound();
 
-            return View(categoryDto);
+            return View(rateDto);
         }
     }
 }

@@ -6,11 +6,11 @@ namespace CleanArchMvc.Domain.Interfaces
 {
     public interface IRatesRepository
     {
-        Task<IEnumerable<Rates>> GetCategories();
+        Task<IEnumerable<Rates>> GetRates();
         Task<Rates> GetById(int? id);
 
-        Task<Rates> Create(Rates category);
-        Task<Rates> Update(Rates category);
-        Task<Rates> Remove(Rates category);
+        Task<Rates> Create(Rates Rate);
+        Task<Rates> Update(Rates Rate);
+        Task<Rates> Remove(Rates Rate);
     }
 }

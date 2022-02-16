@@ -9,13 +9,16 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Rates> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
+            builder.Property(p => p.To).HasMaxLength(3).IsRequired();
+            builder.Property(p => p.From).HasMaxLength(3).IsRequired();
+            builder.Property(p => p.Rate).HasPrecision(10,2).IsRequired();
 
             builder.HasData(
-              new Rates(1, "Material Escolar"),
-              new Rates(2, "Eletrônicos"),
-               new Rates(3, "Acessórios")
-            );
+                new Rates("EUR", "USD", 1.359),
+                new Rates("CAD", "EUR", 0.732),
+                new Rates("USD", "EUR", 0.736),
+                new Rates("EUR", "CAD", .366)
+             );
         }
     }
 }

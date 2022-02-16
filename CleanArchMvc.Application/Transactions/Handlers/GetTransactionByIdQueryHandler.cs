@@ -18,7 +18,7 @@ namespace CleanArchMvc.Application.Transactions.Handlers
         public async Task<CleanArchMvc.Domain.Entities.Transaction> Handle(GetTransactionByIdQuery request,
              CancellationToken cancellationToken)
         {
-            return await _transactionRepository.GetByIdAsync(request.Id);
+            return await _transactionRepository.GetByIdAsync(request.Sku);
         }
     }
 }

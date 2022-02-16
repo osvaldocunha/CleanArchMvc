@@ -10,42 +10,43 @@ namespace CleanArchMvc.Application.Services
 {
     public class RatesService : IRatesService
     {
-        private IRatesRepository _categoryRepository;
+        private IRatesRepository _rateRepository;
         private readonly IMapper _mapper;
-        public RatesService(IRatesRepository categoryRepository, IMapper mapper)
+        public RatesService(IRatesRepository ratesRepository, IMapper mapper)
         {
-            _categoryRepository = categoryRepository;
+            _rateRepository = ratesRepository;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<RatesDTO>> GetCategories()
+
+        public async Task<IEnumerable<RatesDTO>> GetRates()
         {
-            var categoriesEntity = await _categoryRepository.GetCategories();
-            return _mapper.Map<IEnumerable<RatesDTO>>(categoriesEntity);
+            var rates = await _rateRepository.GetRates();
+            return _mapper.Map<IEnumerable<RatesDTO>>(rates);
         }
 
         public async Task<RatesDTO> GetById(int? id)
         {
-            var categoryEntity = await _categoryRepository.GetById(id);
-            return _mapper.Map<RatesDTO>(categoryEntity);
+            var rate = await _rateRepository.GetById(id);
+            return _mapper.Map<RatesDTO>(rate);
         }
 
-        public async Task Add(RatesDTO categoryDto)
+        public async Task Add(RatesDTO ratesDto)
         {
-            var categoryEntity = _mapper.Map<Rates>(categoryDto);
-            await _categoryRepository.Create(categoryEntity);
+            var rate = _mapper.Map<Rates>(ratesDto);
+            await _rateRepository.Create(rate);
         }
 
-        public async Task Update(RatesDTO categoryDto)
+        public async Task Update(RatesDTO ratesDto)
         {
-            var categoryEntity = _mapper.Map<Rates>(categoryDto);
-            await _categoryRepository.Update(categoryEntity);
+            var Rate = _mapper.Map<Rates>(ratesDto);
+            await _rateRepository.Update(Rate);
         }
 
         public async Task Remove(int? id)
         {
-            var categoryEntity = _categoryRepository.GetById(id).Result;
-            await _categoryRepository.Remove(categoryEntity);
+            var Rate = _rateRepository.GetById(id).Result;
+            await _rateRepository.Remove(Rate);
         }
     }
 }

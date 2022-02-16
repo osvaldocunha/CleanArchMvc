@@ -29,13 +29,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.Sku)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    @Html.DisplayNameFor(model => model.Amount)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    @Html.DisplayNameFor(model => model.Currency)
                 </th>
                 <th></th>
             </tr>
@@ -45,22 +45,22 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Sku)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.Amount)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(modelItem => item.Currency)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edita" class="btn btn-warning">
+                        <a asp-action="Edit" asp-route-id="@item.Sku" title="Edita" class="btn btn-warning">
                             <span class="fas fa-edit">Edit</span>
                         </a>
-                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
+                        <a asp-action="Details" asp-route-id="@item.Sku" title="Details" class="btn btn-primary">
                             <span class="fas fa-search">Details</span>
                         </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" title="Deleta" class="btn btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.Sku" title="Deleta" class="btn btn-danger">
                             <span class="fas fa-trash-alt">Delete</span>
                         </a>
                     </td>
