@@ -19,12 +19,12 @@ namespace CleanArchMvc.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RatesDTO>>> Get()
         {
-            var categories = await _rateService.GetRates();
-            if (categories == null)
+            var rates = await _rateService.GetRates();
+            if (rates == null)
             {
                 return NotFound("Categories not found");
             }
-            return Ok(categories);
+            return Ok(rates);
         }
 
         [HttpGet("{id:int}", Name = "GetRate")]

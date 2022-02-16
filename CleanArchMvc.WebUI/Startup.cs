@@ -1,10 +1,12 @@
 using CleanArchMvc.Domain.Account;
+using CleanArchMvc.Domain.Logging;
 using CleanArchMvc.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace CleanArchMvc.WebUI
 {
@@ -24,7 +26,7 @@ namespace CleanArchMvc.WebUI
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            ISeedUserRoleInitial seedUserRoleInitial)
+            ISeedUserRoleInitial seedUserRoleInitial, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -40,8 +42,13 @@ namespace CleanArchMvc.WebUI
 
             app.UseRouting();
 
-            //seedUserRoleInitial.SeedRoles();
-           // seedUserRoleInitial.SeedUsers();
+             seedUserRoleInitial.SeedRoles();
+             seedUserRoleInitial.SeedUsers();
+
+            //LoggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
+            //{
+            //    LogLevel = LogLevel.Information
+            //})); ;
 
             app.UseAuthentication();
             app.UseAuthorization();

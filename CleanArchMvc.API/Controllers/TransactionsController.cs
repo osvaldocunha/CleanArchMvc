@@ -20,12 +20,12 @@ namespace CleanArchMvc.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransactionDTO>>> Get()
         {
-            var produtos = await _transactionService.GetTransactions();
-            if (produtos == null)
+            var transactions = await _transactionService.GetTransactions();
+            if (transactions == null)
             {
                 return NotFound("Transactions not found");
             }
-            return Ok(produtos);
+            return Ok(transactions);
         }
 
         [HttpGet("{sku}", Name = "GetTransaction")]

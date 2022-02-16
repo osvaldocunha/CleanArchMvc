@@ -30,33 +30,33 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RatesDTO category)
+        public async Task<IActionResult> Create(RatesDTO rate)
         {
             if (ModelState.IsValid)
             {
-                await _rateService.Add(category);
+                await _rateService.Add(rate);
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(rate);
         }
 
         [HttpGet()]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
-            var categoryDto = await _rateService.GetById(id);
-            if (categoryDto == null) return NotFound();
-            return View(categoryDto);
+            var rateDto = await _rateService.GetById(id);
+            if (rateDto == null) return NotFound();
+            return View(rateDto);
         }
 
         [HttpPost()]
-        public async Task<IActionResult> Edit(RatesDTO categoryDto)
+        public async Task<IActionResult> Edit(RatesDTO rateDto)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _rateService.Update(categoryDto);
+                    await _rateService.Update(rateDto);
                 }
                 catch (Exception)
                 {
@@ -64,7 +64,7 @@ namespace CleanArchMvc.WebUI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoryDto);
+            return View(rateDto);
         }
 
         [HttpGet()]
@@ -73,11 +73,11 @@ namespace CleanArchMvc.WebUI.Controllers
             if (id == null)
                 return NotFound();
 
-            var categoryDto = await _rateService.GetById(id);
+            var rateDto = await _rateService.GetById(id);
 
-            if (categoryDto == null) return NotFound();
+            if (rateDto == null) return NotFound();
 
-            return View(categoryDto);
+            return View(rateDto);
         }
 
         [HttpPost(), ActionName("Delete")]

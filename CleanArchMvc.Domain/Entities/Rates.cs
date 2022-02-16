@@ -14,6 +14,7 @@ namespace CleanArchMvc.Domain.Entities
             ValidateDomain(to);
             From = from;
             To = to;
+            Id = id;
         }
 
         public string From { get; set; }

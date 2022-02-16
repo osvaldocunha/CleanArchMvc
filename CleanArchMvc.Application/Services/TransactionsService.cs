@@ -7,6 +7,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace CleanArchMvc.Application.Services
 {
@@ -14,22 +15,34 @@ namespace CleanArchMvc.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        public TransactionsService(IMapper mapper, IMediator mediator)
+        private readonly ILoggerFactory _loggerFactory;
+        public TransactionsService(IMapper mapper, IMediator mediator, ILoggerFactory loggerFactory)
         {
             _mapper = mapper;
             _mediator = mediator;
+            _loggerFactory = loggerFactory;
         }
 
         public async Task<IEnumerable<TransactionDTO>> GetTransactions()
         {
-            var transactionsQuery = new GetTransactionsQuery();
+         
+            try
+            {
+                var transactionsQuery = new GetTransactionsQuery();
 
-            if (transactionsQuery == null)
-                throw new Exception($"Entity could not be loaded.");
+                if (transactionsQuery == null)
+                    throw new Exception($"Entity could not be loaded.");
 
-            var result = await _mediator.Send(transactionsQuery);
+                var result = await _mediator.Send(transactionsQuery);
 
-            return _mapper.Map<IEnumerable<TransactionDTO>>(result);
+                return _mapper.Map<IEnumerable<TransactionDTO>>(result);
+            }
+            catch (Exception ex)
+            {
+                _loggerFactory.CreateLogger(ex.Message);
+                throw;
+            }
+
         }
 
         public async Task<TransactionDTO> GetById(string sku)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.Domain", "CleanArchMvc.Domain\CleanArchMvc.Domain.csproj", "{9FF490BC-3242-450D-B189-2CCA0CF84603}"
 EndProject
@@ -15,7 +15,30 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.WebUI", "Clean
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.Domain.Tests", "CleanArchMvc.Domain.Tests\CleanArchMvc.Domain.Tests.csproj", "{7E6E6EFA-F604-4C33-9D8D-F617E4C41FAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchMvc.API", "CleanArchMvc.API\CleanArchMvc.API.csproj", "{813FF1E3-35B1-4362-A693-541A0207CF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.API", "CleanArchMvc.API\CleanArchMvc.API.csproj", "{813FF1E3-35B1-4362-A693-541A0207CF82}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CleanArchMvc.WCFService(1)", "CleanArchMvc.WCFService\", "{C3C5690C-76EE-4362-9FE6-4925BF6549F0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		ProjectReferences = "{1f93b00e-1953-4ad9-945d-41c9b17ed8f9}|CleanArchMvc.Application.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60024"
+		Debug.AspNetCompiler.PhysicalPath = "CleanArchMvc.WCFService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60024\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60024"
+		Release.AspNetCompiler.PhysicalPath = "CleanArchMvc.WCFService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60024\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60024"
+		SlnRelativePath = "CleanArchMvc.WCFService\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +74,10 @@ Global
 		{813FF1E3-35B1-4362-A693-541A0207CF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{813FF1E3-35B1-4362-A693-541A0207CF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{813FF1E3-35B1-4362-A693-541A0207CF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C5690C-76EE-4362-9FE6-4925BF6549F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C5690C-76EE-4362-9FE6-4925BF6549F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C5690C-76EE-4362-9FE6-4925BF6549F0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C5690C-76EE-4362-9FE6-4925BF6549F0}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
