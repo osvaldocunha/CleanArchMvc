@@ -40,8 +40,8 @@ namespace CleanArchMvc.WebUI
 
             app.UseRouting();
 
-            seedUserRoleInitial.SeedRoles();
-            seedUserRoleInitial.SeedUsers();
+            //seedUserRoleInitial.SeedRoles();
+           // seedUserRoleInitial.SeedUsers();
 
             app.UseAuthentication();
             app.UseAuthorization();

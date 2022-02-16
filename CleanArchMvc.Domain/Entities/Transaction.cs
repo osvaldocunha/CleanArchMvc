@@ -11,10 +11,10 @@ namespace CleanArchMvc.Domain.Entities
 
         public Transaction(string sku, double amount, string currency)
         {
-            DomainExceptionValidation.When(sku.IndexOfAny(new char[] { 'B', 'M', 'T', 'R' }) != -1, "Invalid Id value.");
+            DomainExceptionValidation.When(sku.IndexOfAny(new char[] { 'B', 'M', 'T', 'R' }) == -1, "Invalid Id value.");
             Sku = sku;
             Amount = amount;
-
+            Currency = currency;
             ValidateDomain(amount, currency);
         }
 

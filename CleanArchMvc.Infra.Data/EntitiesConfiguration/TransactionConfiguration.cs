@@ -9,7 +9,7 @@ namespace CleanArchMvc.Infra.Data.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
             builder.HasKey(t => t.Sku);
-            builder.Property(p => p.Amount).HasMaxLength(30).IsRequired();
+            builder.Property(p => p.Amount).IsRequired();
             builder.Property(p => p.Currency).HasMaxLength(3).IsRequired();
 
             builder.HasData(

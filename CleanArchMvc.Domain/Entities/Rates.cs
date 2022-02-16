@@ -6,8 +6,9 @@ namespace CleanArchMvc.Domain.Entities
 {
     public sealed class Rates : Entity
     {
-        public Rates(string from, string to, double rate)
-        {       
+        public Rates(int id, string from, string to, double rate)
+        {
+            DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             DomainExceptionValidation.When(rate < 0, "Invalid Id value.");
             ValidateDomain(from);
             ValidateDomain(to);
@@ -19,7 +20,7 @@ namespace CleanArchMvc.Domain.Entities
         public string To { get; set; }
         public double Rate { get; set; }
        
-        public ICollection<Transaction> Transaction { get; set; }
+       // public ICollection<Transaction> Transaction { get; set; }
 
         private void ValidateDomain(string val)
         {
