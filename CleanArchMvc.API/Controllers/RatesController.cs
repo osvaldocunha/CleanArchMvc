@@ -22,7 +22,7 @@ namespace CleanArchMvc.API.Controllers
             var rates = await _rateService.GetRates();
             if (rates == null)
             {
-                return NotFound("Rates not found");
+                return NotFound("Categories not found");
             }
             return Ok(rates);
         }
